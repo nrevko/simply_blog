@@ -1,25 +1,20 @@
-<h1>Listing posts</h1>
+<div id="list">
+<h1>My Simple Blog</h1>
 
 <table>
-  <tr>
-    <th>Post title</th>
-    <th>Post text</th>
-    <th>Date of creation</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.post_title %></td>
-    <td><%= post.post_text %></td>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td><%= post.date_of_creation %></td>
-    <td><%= post.category_name %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="post_text">
+      <dt><%= link_to post.post_title, post %></dt>
+      <dd><%= truncate(strip_tags(post.post_text), :length => 90) %></dd>
+    </td>
+
+    <td>In <%= post.category_name %>.</td>
+    <!--td>< %= link_to 'View', post % ></td-->
+    <td><%= link_to 'Edit', edit_post_path(post) %><br />
+    <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -27,3 +22,4 @@
 <br />
 
 <%= link_to 'New Post', new_post_path %>
+</div>

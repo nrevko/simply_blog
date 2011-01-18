@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SimplyBlog</title>
-  <%= stylesheet_link_tag :all %>
+  <title>Simply Blog</title>
+  <%= stylesheet_link_tag "simply_blog", :media => :all %>
+  <%= stylesheet_link_tag "scaffold" %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
+<body id="post_list">
 
-<%= yield %>
+    <div id="banner">
+      <!---%=  @page.title || "My Simple Blog" %-->
+      My Simple Blog
+    </div>
+    <div id="columns">
+      <div id="side">
+        <a href="http://www...">Home</a><br />
+        <a href="http://www.../faq">Questions</a><br />
 
+      </div>
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
 </body>
 </html>

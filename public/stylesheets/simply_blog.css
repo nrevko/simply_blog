@@ -1,0 +1,89 @@
+#banner {
+  background: #dd5721;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #fdd081;
+  text-align: center;
+}
+
+#columns {
+  background: #fdd081;
+}
+
+#main {
+  margin-left: 17em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 16em;
+  background: #fdd081;
+}
+
+#side a {
+  color: #dd5721;
+  font-size: small;
+}
+
+/* END:mainlayout */
+/* Global styles */
+
+/* Styles for posts/index */
+
+#list table {
+        border-collapse: collapse;
+}
+
+#list table tr td {
+        padding: 5px;
+        vertical-align: top;
+}
+
+#list .list_image {
+  width:        60px;
+  height:       70px;
+}
+
+#list .list_description {
+  width:        60%;
+}
+
+#list .list_description dl {
+        margin: 0;
+}
+
+#list .list_description dt {
+	color:        #244;
+	font-weight:  bold;
+	font-size:    larger;
+}
+
+#list .list_description dd {
+        margin: 0;
+}
+
+#list .list_actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#list .list_line_even {
+  background:   #e0f8f8;
+}
+
+#list .list_line_odd {
+  background:   #ededed;
+}
+
+#list .category_name {
+    width: 200px
+}

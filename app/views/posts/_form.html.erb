@@ -11,13 +11,16 @@
     </div>
   <% end %>
 
+    <fieldset>
+      <legend>Create another post</legend>
+
   <div class="field">
     <%= f.label :post_title %><br />
-    <%= f.text_field :post_title %>
+    <%= f.text_field :post_title, :size => 55 %>
   </div>
   <div class="field">
     <%= f.label :post_text %><br />
-    <%= f.text_area :post_text %>
+    <%= f.text_area :post_text, :rows => 10, :columns => 50 %>
   </div>
   <div class="field">
     <%= f.label :date_of_creation %><br />
@@ -31,4 +34,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+</fieldset>
 <% end %>
