@@ -1,0 +1,19 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<div id="blog">
+<h1>Welcome to Simple Blog</h1>
+
+<% @posts.each do |post| %>
+  <div class="entry">
+    <h3><%= post.post_title %></h3>
+    <div class="info" >
+      Created on <%= post.date_of_creation %> in &quot;<%= post.category_name %>&quot; category.
+    </div>
+    <div class="post_text">
+      <%= sanitize post.post_text %>
+    </div>
+  </div>
+<% end %>
+</div>

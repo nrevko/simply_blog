@@ -87,3 +87,36 @@
 #list .category_name {
     width: 200px
 }
+
+/*Blog styles*/
+/* An entry in the store catalog */
+
+#blog  .entry {
+  overflow: auto;
+  margin-top: 1em;
+  border-bottom: 1px dotted #77d;
+}
+
+#blog  .post_title {
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#blog .entry h3 {
+ margin-top: 0;
+ margin-bottom: 2px;
+ color: #497B38;
+}
+
+#blog .post_text {
+ margin-top: 0.5em;
+ margin-bottom: 0.8em;
+}
+
+#blog h1 {
+ color: #2f612d;
+}
+
+#blog .info {
+ color: #466869;
+}

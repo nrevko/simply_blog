@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
+    @posts = Post.paginate :page=>params[:page], :order=>'date_of_creation desc', :per_page => 10
     
     respond_to do |format|
       format.html # index.html.erb
@@ -45,12 +45,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.date_of_creation ||= Date.today
-    #@categories = Category.all #looking for the list of categories
+    @categories = Category.all #looking for the list of categories
 
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
+        format.html { redirect_to(posts_url, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
