@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+cats:
+  category_name: cats
+
+dogs:
+  category_name: dogs
