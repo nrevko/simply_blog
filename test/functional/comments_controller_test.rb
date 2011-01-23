@@ -21,7 +21,7 @@ class CommentsControllerTest < ActionController::TestCase
       post :create, :post_id => posts(:one).id, :comment => @comment.attributes
     end
 
-    assert_redirected_to post_comments_path
+    assert_redirected_to post_path(@comment.post_id)
   end
 
   test "should show comment" do
@@ -38,7 +38,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "should update comment" do
     put :update, :post_id => @comment.post_id, :id => @comment.to_param, :comment => @comment.attributes
-    assert_redirected_to post_comments_path
+    assert_redirected_to post_path(@comment.post_id)
   end
 
   test "should destroy comment" do
@@ -46,6 +46,6 @@ class CommentsControllerTest < ActionController::TestCase
       delete :destroy, :post_id => @comment.post_id, :id => @comment.to_param
     end
 
-    assert_redirected_to post_comments_path
+    assert_redirected_to post_path(@comment.post_id)
   end
 end

@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
 #puts "in Formatting"
       if @comment.save
 #puts "Saving!!!"
-        format.html { redirect_to(post_comments_url, :notice => 'Comment was successfully created.') }
+        format.html { redirect_to(post_url(@post), :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
 #puts "Cannot save!!!"
@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to(post_comments_url, :notice => 'Comment was successfully updated.') }
+        format.html { redirect_to(post_url(@comment.post_id), :notice => 'Comment was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -89,11 +89,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.xml
   def destroy
     @comment = Comment.find(params[:id])
-    post = Post.find(@comment.post_id)
+    #post = Post.find(@comment.post_id)
+    @comment.post_id = nil
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(post_comments_url) }
+      format.html { redirect_to(post_url(@comment.post_id)) }
       format.xml  { head :ok }
     end
   end

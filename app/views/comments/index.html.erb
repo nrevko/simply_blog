@@ -18,7 +18,7 @@ Need to Re-Write to display comments for a given post
     <td><%= comment.post_id %></td>
     <!--td>< %= link_to 'Show', post_comment_path(comment.post_id) %></td-->
     <!--td>< %= link_to 'Edit', edit_post_comment_path, :method =>"", :post_id => comment.post_id, :id => comment.id %></td-->
-    <td><%= link_to 'Destroy', post_comments_path, :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', post_comments_url, :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

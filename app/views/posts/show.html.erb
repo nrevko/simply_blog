@@ -1,25 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Post title:</b>
+<h2>
   <%= @post.post_title %>
+</h2>
+
+<p>
+  <%= strip_tags(@post.post_text) %>
 </p>
 
 <p>
-  <b>Post text:</b>
-  <%= @post.post_text %>
+  <%= @post.date_of_creation %> |
+  Under <%= @category %>.
 </p>
 
-<p>
-  <b>Date of creation:</b>
-  <%= @post.date_of_creation %>
-</p>
+<div>
+  <b>Comments:</b>
+  <ul>
+    <%= render @post.comments %>
+  </ul>
+</div>
 
-<p>
-  <b>Category:</b>
-  <%= @category %>
-</p>
-
-
+<!--should make this visible only for admins-->
 <%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path %> |
+<!--above will be for admins-->
+<%= link_to 'Blog', blog_path %>

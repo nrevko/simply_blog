@@ -19,9 +19,11 @@
       <%= pluralize(post.comments.count, 'comment') %>
       <!--Here render ajax template for single comment-->
 <% if post.comments.count>0 %>
-      <fieldset>
-        <%= render(post.comments) %>
-      </fieldset>
+
+        <ul>
+          <%= render(post.comments) %>
+        </ul>
+      
 <% end %>
       <!--% render(Comment.new(:post_id=>post)) %-->
       <%= link_to "Post your comment", new_post_comment_path(:post_id => post) %>
