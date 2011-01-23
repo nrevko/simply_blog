@@ -1,4 +1,10 @@
 class PostsController < ApplicationController
+  before_filter :set_categories
+
+  def set_categories
+    @categories = Category.all
+  end
+
   # GET /posts
   # GET /posts.xml
   def index
@@ -26,7 +32,7 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @post = Post.new
-    @categories = Category.all #looking for the list of categories
+    #@categories = Category.all #looking for the list of categories
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,7 +43,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    @categories = Category.all #looking for the list of categories
+    #@categories = Category.all #looking for the list of categories
   end
 
   # POST /posts
@@ -47,6 +53,7 @@ class PostsController < ApplicationController
     @post.date_of_creation ||= Date.today
     @categories = Category.all #looking for the list of categories
 
+ #puts("THis is post title/text/cat #{@post.post_title} / #{@post.post_text} / #{@post.category_id}")   
 
     respond_to do |format|
       if @post.save

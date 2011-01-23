@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  fixtures :categories
+  fixtures :posts
+
   setup do
-    @post = posts(:one)
+    @post = posts(:three)
+    @update = {         :post_text => "YYY",
+                        :category_id => categories(:one).id}
   end
 
   test "should get index" do
@@ -18,10 +23,13 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, :post => @post.attributes
+      ppost = Post.new( :post_title => "My Creative Post #22",
+                        :post_text => "YYY",
+                        :category_id => categories(:one).id)
+      post :create, :post => ppost.attributes
     end
 
-    assert_redirected_to post_path(assigns(:post))
+    assert_redirected_to posts_url
   end
 
   test "should show post" do
@@ -35,7 +43,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should update post" do
-    put :update, :id => @post.to_param, :post => @post.attributes
+    put :update, :id => @post.to_param, :post => @update
     assert_redirected_to post_path(assigns(:post))
   end
 

@@ -16,9 +16,12 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+#adding a new category, cannot user the one in fixtures because they are already in db
+  #new category needs unique name
   test "should create category" do
     assert_difference('Category.count') do
-      post :create, :category => @category.attributes
+      cattegory = Category.new(:category_name => "MyNewCategory")
+      post :create, :category => cattegory.attributes
     end
 
     assert_redirected_to category_path(assigns(:category))

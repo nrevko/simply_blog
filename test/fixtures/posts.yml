@@ -4,10 +4,16 @@ one:
   post_title: MyTitle
   post_text: MyText
   date_of_creation: 2011-01-17
-  category_id: 1
+  category: one
 
 two:
   post_title: MyString
   post_text: MyText
   date_of_creation: 2011-01-17
-  category_id: 1
+  category: dogs
+
+three:
+  post_title: MyFavoriteString
+  post_text: MyText
+  date_of_creation: 2011-01-17
+  category: dogs

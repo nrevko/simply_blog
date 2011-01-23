@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :category
+  has_many :comments
 
   validates :post_title, :post_text, :category_id, :presence => true
   validates :post_title, :uniqueness => true
@@ -9,4 +10,6 @@ class Post < ActiveRecord::Base
     category = Category.find(self.category_id).category_name
     category
   end
+
+  
 end

@@ -8,9 +8,9 @@
     <td><%= post.date_of_creation %></td>
     <td class="post_text">
       <dt><%= link_to post.post_title, post %></dt>
-      <dd><%= truncate(strip_tags(post.post_text), :length => 90) %></dd>
+      <dd><%= truncate(strip_tags(post.post_text), :length => 60) %></dd>
     </td>
-
+    <td><%= pluralize(post.comments.count, 'comment') %></td>
     <td>In <%= post.category_name %>.</td>
     <!--td>< %= link_to 'View', post % ></td-->
     <td><%= link_to 'Edit', edit_post_path(post) %><br />

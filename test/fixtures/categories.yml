@@ -1,6 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-cats:
+one:
   category_name: cats
 
 dogs:

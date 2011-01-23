@@ -1,7 +1,9 @@
 SimplyBlog::Application.routes.draw do
+  # resources :comments
+
   get "blog/index"
 
-  resources :posts
+  #resources :posts
 
   resources :categories
 
@@ -37,6 +39,10 @@ SimplyBlog::Application.routes.draw do
   #     resource :seller
   #   end
 
+  resources :posts do
+    resources :comments
+  end
+
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
@@ -54,7 +60,7 @@ SimplyBlog::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "blog#index", :as => 'blog'
+  root :to => "blog#index", :as => 'blog'
 
   # See how all your routes lay out with "rake routes"
 
