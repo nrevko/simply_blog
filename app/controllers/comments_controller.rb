@@ -2,25 +2,13 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
   def index
-    @comments = Comment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @comments }
-
-    end
-  end
-
-  # GET /comments/1
-  # GET /comments/1.xml
-  def show
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      format.html { redirect_to post_comments_path}
-      format.xml  { render :xml => @comment }
-    end
-
+    @post = Post.find(params[:product_id])
+    @comments = @post.comments
+    puts"HEEEEEEEEEEEEEEEEY"
+ #   respond_to do |format|
+ #     format.html # index.html.erb
+ #     format.xml  { render :xml => @comments }
+ #   end
   end
 
   # GET /comments/new
@@ -28,7 +16,7 @@ class CommentsController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
     @comment = Comment.new
-    @comment.post_id = @post.id
+    #@comment.post_id = @post.id
 #puts "We got here"
     respond_to do |format|
       format.html # new.html.erb
@@ -38,24 +26,19 @@ class CommentsController < ApplicationController
 #puts "ABOUT to go out"
   end
 
-  # GET /comments/1/edit
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
   # POST /comments
   # POST /comments.xml
   def create
-
-    @comment = Comment.new(params[:comment])
     @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(params[:comment])
 
-    @comment.post_id = @post.id
+    #@comment = Comment.new(params[:comment])
+    #@post = Post.find(params[:post_id])
+
+    #@comment.post_id = @post.id
 #@comment = @post.comments.new(params[:comment])
     #puts "==============POST id: #{@post.id} #{@post.post_title}===Com Name #{@comment.name}"
-
     respond_to do |format|
-
 #puts "in Formatting"
       if @comment.save
 #puts "Saving!!!"
@@ -69,21 +52,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.xml
-  def update
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.html { redirect_to(post_url(@comment.post_id), :notice => 'Comment was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /comments/1
   # DELETE /comments/1.xml
