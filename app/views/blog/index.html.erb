@@ -19,7 +19,7 @@
 
 <br />
       <%= link_to_if(post.comments.count>0, pluralize(post.comments.count, 'comment'), post_comments_path(:post_id=>post), :remote=>true) %>
-      | <%= link_to "Post your comment", new_post_comment_path(:post_id => post) %>
+      | <%= link_to "Post your comment", new_post_comment_path(:post_id => post), :remote => true %>
     <div id=<%="post_comments_list_"+post.id.to_s %>>
 
       <!--Here render ajax template for single comment-->
@@ -37,4 +37,7 @@
 </div>
   </div>
 <% end %>
+
+    <p><%= will_paginate @posts %></p>
+
 </div>

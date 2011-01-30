@@ -21,6 +21,7 @@ format.js
 #puts "We got here"
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.xml  { render :xml => @comment }
     end
 
@@ -44,10 +45,12 @@ format.js
       if @comment.save
 #puts "Saving!!!"
         format.html { redirect_to(post_url(@post), :notice => 'Comment was successfully created.') }
+#format.js => add ajax here
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
 #puts "Cannot save!!!"
         format.html { render :action => "new" }
+#    format.js
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end
