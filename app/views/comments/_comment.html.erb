@@ -1,1 +1,5 @@
-<li>BY <%= comment.name %>: <%= comment.body %></li>
+<div class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+  <%= comment.body %>
+  <div class="comment_author">-<%= comment.name %></div>
+</div>

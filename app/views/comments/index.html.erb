@@ -1,28 +1,25 @@
 Need to Re-Write to display comments for a given post
 <h1>Listing comments</h1>
-
+<div class="comment_list">
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Body</th>
-    <th>Post</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @comments.each do |comment| %>
-  <tr>
-    <td><%= comment.name %></td>
-    <td><%= comment.body %></td>
-    <td><%= comment.post_id %></td>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+    <td><%= comment.body %>
+      <br />
+      <div class="comment_author">-<%= comment.name %></div>
+    </td>
+
     <!--td>< %= link_to 'Show', post_comment_path(comment.post_id) %></td-->
     <!--td>< %= link_to 'Edit', edit_post_comment_path, :method =>"", :post_id => comment.post_id, :id => comment.id %></td-->
-    <td><%= link_to 'Destroy', post_comments_url, :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td>
+    <!--td>< %= link_to 'Destroy', post_comments_url(:comment=>comment), :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td-->
+    <td><%= link_to 'Destroy', :url=>{:action => "destroy"}, :comment => comment, :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
-</table>
 
+</table>
+</div>
 <br />
 
 

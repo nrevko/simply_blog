@@ -7,27 +7,34 @@
 
 <% @posts.each do |post| %>
   <div class="entry">
-    <h3><%= post.post_title %></h3>
+    <h2><%= link_to post.post_title, post %></h2>
     <div class="info" >
-      Created on <%= post.date_of_creation %> in &quot;<%= post.category_name %>&quot; category.
+      Created on <%= post.date_of_creation %> in &quot;<%= post.category.category_name %>&quot; category.
     </div>
     <div class="post_text">
-      <%= sanitize post.post_text %>
-    </div>
+      <%= sanitize truncate(post.post_text, :length => 300) %>
+      <% if post.post_text.length>300 %>
+        <%= link_to "See More", post %>
+      <% end %>
 
-    <div>
-      <%= pluralize(post.comments.count, 'comment') %>
+<br />
+      <%= link_to_if(post.comments.count>0, pluralize(post.comments.count, 'comment'), post_comments_path(:post_id=>post), :remote=>true) %>
+      | <%= link_to "Post your comment", new_post_comment_path(:post_id => post) %>
+    <div id=<%="post_comments_list_"+post.id.to_s %>>
+
       <!--Here render ajax template for single comment-->
-<% if post.comments.count>0 %>
+<!--% if post.comments.count %>
 
         <ul>
-          <%= render(post.comments) %>
+          < %= render(post.comments) %>
         </ul>
       
-<% end %>
+< % end %-->
+      </div>
       <!--% render(Comment.new(:post_id=>post)) %-->
-      <%= link_to "Post your comment", new_post_comment_path(:post_id => post) %>
-    </div>
+<div id=<%= "new_comment_for_"+post.id.to_s %>>
+</div>
+</div>
   </div>
 <% end %>
 </div>

@@ -36,6 +36,25 @@
 /* END:mainlayout */
 /* Global styles */
 
+/* Styles for comments/index *
+.comment_list */
+.entry .post_text{
+    padding-left: 1em;
+}
+.entry .comment_author {
+    text-align: right;
+    font-style: italic;
+}
+
+/*.comment_list
+.list_line_even {
+  background:   #e0f8f8;
+}
+
+/*.comment_list */
+.entry .list_line_odd {
+  background:   #ededed;
+}
 /* Styles for posts/index */
 
 #list table {
@@ -102,15 +121,20 @@
   font-family: sans-serif;
 }
 
-#blog .entry h3 {
+#blog .entry h2 a {
  margin-top: 0;
  margin-bottom: 2px;
  color: #497B38;
-}`
+ text-decoration: none;
+}
 
 #blog .post_text {
  margin-top: 0.5em;
  margin-bottom: 0.8em;
+}
+
+#blog .post_text a {
+ color: #466869;
 }
 
 #blog h1 {

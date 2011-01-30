@@ -6,7 +6,7 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :index, :post_id => posts(:one).id
     assert_response :success
     assert_not_nil assigns(:comments)
   end

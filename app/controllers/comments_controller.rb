@@ -2,13 +2,14 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
   def index
-    @post = Post.find(params[:product_id])
+    @post = Post.find(params[:post_id])
     @comments = @post.comments
     puts"HEEEEEEEEEEEEEEEEY"
- #   respond_to do |format|
- #     format.html # index.html.erb
- #     format.xml  { render :xml => @comments }
- #   end
+    respond_to do |format|
+      format.html # index.html.erb
+format.js
+      format.xml  { render :xml => @comments }
+    end
   end
 
   # GET /comments/new
@@ -56,13 +57,14 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.xml
   def destroy
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     #post = Post.find(@comment.post_id)
     @comment.post_id = nil
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(post_url(@comment.post_id)) }
+      format.html { redirect_to(post_comments_url(@post)) }
       format.xml  { head :ok }
     end
   end

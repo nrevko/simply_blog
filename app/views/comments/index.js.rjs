@@ -1,0 +1,1 @@
+page.replace_html('post_comments_list_'+@post.id.to_s, render(@post.comments))

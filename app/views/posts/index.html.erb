@@ -11,7 +11,7 @@
       <dd><%= truncate(strip_tags(post.post_text), :length => 60) %></dd>
     </td>
     <td><%= pluralize(post.comments.count, 'comment') %></td>
-    <td>In <%= post.category_name %>.</td>
+    <td>In <%= post.category.category_name %>.</td>
     <!--td>< %= link_to 'View', post % ></td-->
     <td><%= link_to 'Edit', edit_post_path(post) %><br />
     <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %></td>

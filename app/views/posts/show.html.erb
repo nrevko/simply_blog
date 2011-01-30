@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= link_to 'Back to Blog', blog_path %>
 <h2>
   <%= @post.post_title %>
 </h2>
@@ -14,14 +14,16 @@
 </p>
 
 <div>
+  <% if !@post.comments.empty? %>
   <b>Comments:</b>
   <ul>
     <%= render @post.comments %>
   </ul>
+  <% end %>
+  <!-- link to create new comment -->
 </div>
 
 <!--should make this visible only for admins-->
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %> |
 <!--above will be for admins-->
-<%= link_to 'Blog', blog_path %>

@@ -6,13 +6,13 @@ class Post < ActiveRecord::Base
   validates :post_title, :uniqueness => true
   validates :category_id, :inclusion => Category.all.map{ |cat| cat.id}
 
-  def category_name
-    category = Category.find(self.category_id).category_name
-    category
-  end
+ # def category_name
+ #   category = Category.find(self.category_id).category_name
+ #   category
+ # end
 
-  def comments_for_post
-    comments = Comment.find(:post_id => self.id)
-  end
+ # def comments_for_post
+ #   comments = Comment.find(:post_id => self.id)
+ # end
   
 end
