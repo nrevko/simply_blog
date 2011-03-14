@@ -4,7 +4,8 @@
   <title>Simply Blog</title>
   <%= stylesheet_link_tag "simply_blog", :media => :all %>
   <%= stylesheet_link_tag "scaffold" %>
-  <%= javascript_include_tag :defaults %>
+  <!--%= javascript_include_tag :defaults %-->
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js", "jquery.rails.js" %><!--, 'application' %-->
   <%= csrf_meta_tag %>
 </head>
 <body id="post_list">

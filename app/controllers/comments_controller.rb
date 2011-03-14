@@ -25,13 +25,14 @@ format.js
       format.xml  { render :xml => @comment }
     end
 
+   # @clicked_first_time=1
 #puts "ABOUT to go out"
   end
 
   # POST /comments
   # POST /comments.xml
   def create
-    @post = Post.find(params[:post_id])
+    @post    = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
 
     #@comment = Comment.new(params[:comment])
@@ -44,14 +45,23 @@ format.js
 #puts "in Formatting"
       if @comment.save
 #puts "Saving!!!"
-        format.html { redirect_to(post_url(@post), :notice => 'Comment was successfully created.') }
-#format.js => add ajax here
-        format.xml  { render :xml => @comment, :status => :created, :location => @comment }
+#@clicked_first_time = nil
+        @comment_created = true
+        format.html { redirect_to(blog_url, :notice => 'Comment was successfully created.') }
+        #format.html { redirect_to(post_url(@post), :notice => 'Comment was successfully created.') }
+
+        format.js #{@current_item=@comment} #=> add ajax here
+        format.xml { render :xml => @comment, :status => :created, :location => @comment }
       else
 #puts "Cannot save!!!"
-        format.html { render :action => "new" }
-#    format.js
-        format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+        @comment_created   = false
+        #flash.now[:notice] = "Your comment cannot be created. Please, fill out appropriate fields"
+#logger.error flash.now[:notice]
+        format.html { render :action => "new", :post => @post }
+        #format.html {redirect_to blog_url, render(:partial => 'comments/_new_comment.html.erb', :locals=> {:notice => "Comment wasn't created!"})}#new_post_comment_path}#
+        #       format.html{ render(:nothing => true)}#{ render(:partial => "form", :locals => {:notice =>"Cannot create a comment"})}
+        format.js
+#        format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -63,7 +73,9 @@ format.js
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     #post = Post.find(@comment.post_id)
+    #@comment = @post.comment(params[:comment])
     @comment.post_id = nil
+    @post.comment = nil
     @comment.destroy
 
     respond_to do |format|

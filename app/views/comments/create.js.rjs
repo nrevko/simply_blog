@@ -1,0 +1,7 @@
+page.select("#notice").each{|notice| notice.hide}
+if @comment_created
+  page.replace_html('new_comment_for_'+@post.id.to_s)
+else
+  page.replace_html('#notice', "UUUUUUU comment not created")
+
+end

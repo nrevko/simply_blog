@@ -1,1 +1,0 @@
-page.replace_html('new_comment_for_'+@post.id.to_s, render(:partial=>"form") )

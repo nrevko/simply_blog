@@ -1,0 +1,12 @@
+<% if @comment_created %>
+$('#notice').html("Comment has been created!");
+$('#<%= "post_comments_list_#{@post.id}" %>').html("<%= escape_javascript(render(@post.comments)) %>");
+
+$('<%= "#new_comment_for_#{@post.id}" %>').html('');
+$('#<%= "new_comment_for_#{@post.id}_notice" %>').hide();
+
+<% else %>
+
+  $('#<%= "new_comment_for_#{@post.id}_notice" %>').html("Please, fill in all the fields!");
+
+<% end %>

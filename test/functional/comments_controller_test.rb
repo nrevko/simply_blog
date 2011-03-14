@@ -21,7 +21,8 @@ class CommentsControllerTest < ActionController::TestCase
       post :create, :post_id => posts(:one).id, :comment => @comment.attributes
     end
 
-    assert_redirected_to post_path(@comment.post_id)
+    assert_redirected_to blog_url
+    #assert_redirected_to post_path(@comment.post_id)
   end
 
   test "should destroy comment" do
