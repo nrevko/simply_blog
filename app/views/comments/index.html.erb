@@ -1,8 +1,8 @@
 Need to Re-Write to display comments for a given post
 <h1>Listing comments</h1>
 <div class="comment_list">
+  <h3>say it is so</h3>
 <table>
-
 <% @comments.each do |comment| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
@@ -13,10 +13,8 @@ Need to Re-Write to display comments for a given post
 
     <!--td>< %= link_to 'Show', post_comment_path(comment.post_id) %></td-->
     <!--td>< %= link_to 'Edit', edit_post_comment_path, :method =>"", :post_id => comment.post_id, :id => comment.id %></td-->
-    <!--
-    , :url=>{:action => "destroy"}, :post_id => comment.post_id
-    td>< %= link_to 'Destroy', post_comments_url(:comment=>comment), :post_id => comment.post_id, :confirm => 'Are you sure?', :method => :delete %></td-->
-    <td><%= link_to 'Destroy', :comment => comment, :post_id=>comment.post_id, :method => :delete, :confirm => 'Are you sure?' %></td>
+    <!-- for routes all the places w/o URL have the previous/above path/url -->
+    <td><%= link_to 'Destroy', post_comment_path(:id=>comment.id, :post_id=>comment.post_id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 

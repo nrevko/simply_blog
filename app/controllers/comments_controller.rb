@@ -70,16 +70,21 @@ format.js
   # DELETE /comments/1
   # DELETE /comments/1.xml
   def destroy
+
     @post = Post.find(params[:post_id])
+    puts "RENDERING here's your comment: #{@post.post_title}"
     @comment = Comment.find(params[:id])
+    puts "RENDERING here's your comment: #{@comment.body}"
+    #console.log("RENDERING here's your comment: #{@comment.body}")
     #post = Post.find(@comment.post_id)
     #@comment = @post.comment(params[:comment])
     @comment.post_id = nil
-    @post.comment = nil
+    #@post.comment = nil
     @comment.destroy
 
     respond_to do |format|
       format.html { redirect_to(post_comments_url(@post)) }
+      #format.html { redirect_to(post_comments_url(@post)) }
       format.xml  { head :ok }
     end
   end
