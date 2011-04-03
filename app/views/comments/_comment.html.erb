@@ -1,5 +1,11 @@
 <div class="<%= cycle('list_line_odd', 'list_line_even') %>">
+ <!--rename the class and add another formatting if necessary -->
+  <div class="comment_remove">
+    <!-- periodically stops working =( %= link_to 'X', post_comment_path(:post_id=>comment.post.id, :id=>comment.id), :confirm => 'Are you sure?', :method => :delete %>
+    -->
+    <%= button_to('X', post_comment_path(comment.post, comment), :confirm => 'Are you sure?', :method => :delete, :remote => true) %>
+ </div>
 
-  <%= comment.body %>
+  <div class="comment_body"><%= comment.body %></div>
   <div class="comment_author">-<%= comment.name %></div>
 </div>

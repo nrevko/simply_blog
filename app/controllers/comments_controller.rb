@@ -6,7 +6,10 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     puts"HEEEEEEEEEEEEEEEEY"
     respond_to do |format|
-      format.html # index.html.erb
+      format.html do
+        redirect_to post_path(@post)
+      end
+       # index.html.erb
 format.js
       format.xml  { render :xml => @comments }
     end
@@ -72,7 +75,7 @@ format.js
   def destroy
 
     @post = Post.find(params[:post_id])
-    puts "RENDERING here's your comment: #{@post.post_title}"
+    #puts "RENDERING here's your post: #{@post.post_title}"
     @comment = Comment.find(params[:id])
     puts "RENDERING here's your comment: #{@comment.body}"
     #console.log("RENDERING here's your comment: #{@comment.body}")
@@ -85,6 +88,7 @@ format.js
     respond_to do |format|
       format.html { redirect_to(post_comments_url(@post)) }
       #format.html { redirect_to(post_comments_url(@post)) }
+      format.js
       format.xml  { head :ok }
     end
   end

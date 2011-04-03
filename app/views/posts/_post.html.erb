@@ -1,0 +1,35 @@
+<div class="entry">
+  <h2><%= link_to post.post_title, post %></h2>
+
+  <div class="info">
+    Created on <%= post.date_of_creation %> in &quot;<%= post.category.category_name %>&quot; category.
+  </div>
+  <div class="post_text">
+    <%= sanitize truncate(post.post_text, :length => 300) %>
+    <% if post.post_text.length>300 %>
+        <%= link_to "See More", post %>
+    <% end %>
+
+    <br/>
+    <%= link_to_if(post.comments.count>0, pluralize(post.comments.count, 'comment'), post_comments_path(:post_id=>post), :remote=>true) %>
+    | <%= link_to "Post your comment", new_post_comment_path(:post_id => post), :remote => true %>
+    <div id=<%= "post_comments_list_#{post.id}" %>>
+
+      <!--Here render ajax template for single comment-->
+      <!--% if post.comments.count %>
+
+           <ul>
+             < %= render(post.comments) %>
+           </ul>
+
+   < % end %-->
+    </div>
+    <!--% render(Comment.new(:post_id=>post)) %-->
+    <div id="<%= "new_comment_for_#{post.id}_notice" %>" class="notice">
+      <!-- error message will be created here -->
+    </div>
+    <div id=<%= "new_comment_for_#{post.id}" %>>
+    </div>
+
+  </div>
+</div>

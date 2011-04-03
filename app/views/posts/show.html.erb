@@ -1,29 +1,31 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'Back to Blog', blog_path %>
-<h2>
-  <%= @post.post_title %>
-</h2>
+<div class="entry">
+  <h2>
+    <%= @post.post_title %>
+  </h2>
 
-<p>
-  <%= strip_tags(@post.post_text) %>
-</p>
+  <div class="post_text">
+    <%= strip_tags(@post.post_text) %>
+    <p>
+      <%= @post.date_of_creation %> |
+      Under <%= @category %>.
+    </p>
+  </div>
+  <div>
+    <% if !@post.comments.empty? %>
+        <h3>Comments:</h3>
 
-<p>
-  <%= @post.date_of_creation %> |
-  Under <%= @category %>.
-</p>
+        <div id="<%= "post_comments_list_#{@post.id}" %>" class="comment_div" >
+          <%= render @post.comments %>
+        </div>
+    <% end %>
+    <!-- link to create new comment -->
+  </div>
 
-<div>
-  <% if !@post.comments.empty? %>
-  <b>Comments:</b>
-  <ul>
-    <%= render @post.comments %>
-  </ul>
-  <% end %>
-  <!-- link to create new comment -->
+  <!--should make this visible only for admins-->
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %> |
+  <!--above will be for admins-->
+
 </div>
-
-<!--should make this visible only for admins-->
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %> |
-<!--above will be for admins-->
