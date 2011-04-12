@@ -7,8 +7,9 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index, :post_id => posts(:one).id
-    assert_response :success
-    assert_not_nil assigns(:comments)
+    assert_redirected_to post_path(posts(:one).id)
+    #assert_response :success
+    #assert_not_nil assigns(:comments)
   end
 
   test "should get new" do

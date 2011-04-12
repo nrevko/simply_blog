@@ -49,9 +49,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
+    @categories = Category.all #looking for the list of categories
+    puts "number of categories #{@categories.count}"
     @post = Post.new(params[:post])
     @post.date_of_creation ||= Date.today
-    @categories = Category.all #looking for the list of categories
 
  #puts("THis is post title/text/cat #{@post.post_title} / #{@post.post_text} / #{@post.category_id}")   
 
